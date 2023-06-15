@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>НОД и простые числа</title>
+    <style>
+        body {
+            font: 1.2em "Segoe UI", sans-serif;
+        }
+
+        button {
+            padding-top: 1em;
+            padding-bottom: 1em;
+        }
+
+        input {
+            height: 30px;
+            font-size: 1.35em;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h1></h1>
+    <section style="padding: 0.5em; border: 1px solid gray">
+        <div>
+            <label for="paramM" style="display: block">Число M</label>
+            <input id="paramM">
+        </div>
+        <div>
+            <label for="paramN" style="display: block">Число N</label>
+            <input id="paramN">
+        </div>
+        <div style="display: flex; justify-content: space-around; padding-top: 0.7em; width: 100%">
+            <button onclick="submitGreatestCommonDivider()">Найти НОД двух чисел</button>
+            <button onclick="submitPrimeNumbers()">Найти простые числа на интервале</button>
+            <button onclick="submitIsPrimeNumber()">Проверить, является ли число N простым</button>
+        </div>
+    </section>
+    <div id="result" style="word-wrap: anywhere; max-width: 100%; min-height: 25vh"></div>
+</div>
+<script src="script.js"></script>
+<script>
+    let paramM = document.getElementById('paramM');
+    let paramN = document.getElementById('paramN');
+    let result = document.getElementById('result');
+
+    function submitGreatestCommonDivider() {
+        result.innerText = '';
+        let m = parseInt(paramM.value);
+        let n = parseInt(paramN.value);
+        if (isNaN(m) || isNaN(n))
+            alert('Введите целые числа!');
+        let gcd = greatestCommonDivider(m, n);
+        result.innerHTML = `${gcd}`;
+    }
+
+    function submitPrimeNumbers() {
+        result.innerText = '';
+        let m = parseInt(paramM.value);
+        let n = parseInt(paramN.value);
+        if (isNaN(m) || isNaN(n))
+            alert('Введите целые числа!');
+        let primeNumbers = findPrimeNumbers(m, n);
+        result.innerHTML = `${primeNumbers.map(p => p)}`;
+    }
+
+    function submitIsPrimeNumber() {
+        result.innerText = '';
+        let n = parseInt(paramN.value);
+        if (isNaN(n))
+            alert('Введите целое число!');
+        let isPrime = isPrimeNumber(n);
+        result.innerHTML = `${isPrime ? 'Да' : 'Нет'}`;
+    }
+
+</script>
+</body>
+</html>
